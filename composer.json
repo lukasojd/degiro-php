@@ -1,0 +1,10 @@
+{
+  "name": "lukasojd/degiro-php",
+  "authors": [
+    {
+      "name": "Lukáš Kříž",
+      "email": "lukasojd@gmail.com"
+    }
+  ],
+  "require": {}
+}
