@@ -14,12 +14,11 @@ jobs:
       php: 7.4
       script:
         - make qa
+
     - stage: coverage
       php: 7.4
       script:
-        - make test
-        - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
-        - php php-coveralls.phar --verbose
+        - make coverage
 
 sudo: false
 
