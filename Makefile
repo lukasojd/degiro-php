@@ -20,5 +20,5 @@ phpstan: vendor
 tests: vendor
 	./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
-coverage: vendor tests
-	php ./vendor/bin/php-coveralls  --verbose
+coverage: tests
+	php ./vendor/bin/php-coveralls --config ./tests/.coveralls.yml  --verbose
