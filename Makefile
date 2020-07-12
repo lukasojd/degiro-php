@@ -15,4 +15,4 @@ phpstan: vendor
 	vendor/bin/phpstan analyse -l 2 -c phpstan.neon app --memory-limit=-1
 
 tests: vendor
-	./vendor/bin/phpunit --coverage-text --colors=never
+	./vendor/bin/phpunit --coverage-clover coverage.xml
