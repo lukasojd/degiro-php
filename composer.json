@@ -6,5 +6,26 @@
       "email": "lukasojd@gmail.com"
     }
   ],
-  "require": {}
+  "keywords": [
+    "degiro"
+  ],
+  "license": [
+    "MIT"
+  ],
+  "require": {
+    "php": ">= 7.4.16"
+  },
+  "require-dev": {
+    "ninjify/qa": "^0.9.0",
+    "phpunit/phpunit": "^8.5",
+    "phpstan/phpstan-nette": "^0.12.6",
+    "phpstan/extension-installer": "^1.0",
+    "phpstan/phpstan-phpunit": "^0.12.11"
+  },
+  "minimum-stability": "stable",
+  "config": {
+    "platform": {
+      "php": "7.4.16"
+    }
+  }
 }
