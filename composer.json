@@ -23,6 +23,11 @@
     "phpstan/phpstan-phpunit": "^0.12.11",
     "php-coveralls/php-coveralls": "^2.2"
   },
+  "autoload": {
+    "psr-4": {
+      "Lukasojd\\DegiroPhp\\": "src"
+    }
+  },
   "minimum-stability": "stable",
   "config": {
     "platform": {

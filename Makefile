@@ -6,16 +6,16 @@ vendor: composer.json composer.lock
 qa: tests lint phpstan cs
 
 lint: vendor
-	vendor/bin/linter app tests
+	vendor/bin/linter src tests
 
 cs: vendor
-	vendor/bin/codesniffer app tests
+	vendor/bin/codesniffer src tests
 
 csf: vendor
-	vendor/bin/codefixer --standard=ruleset.xml app tests
+	vendor/bin/codefixer --standard=ruleset.xml src tests
 
 phpstan: vendor
-	vendor/bin/phpstan analyse -l 2 -c phpstan.neon app --memory-limit=-1
+	vendor/bin/phpstan analyse -l 2 -c phpstan.neon src --memory-limit=-1
 
 tests: vendor
 	./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
