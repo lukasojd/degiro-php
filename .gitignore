@@ -4,3 +4,4 @@ vendor
 coverage
 coverage.xml
 build/logs/clover.xml
+.env

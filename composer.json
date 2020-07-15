@@ -13,7 +13,10 @@
     "MIT"
   ],
   "require": {
-    "php": ">= 7.4.16"
+    "php": ">= 7.4.16",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "vlucas/phpdotenv": "^5.1"
   },
   "require-dev": {
     "ninjify/qa": "^0.9.0",
