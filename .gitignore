@@ -5,3 +5,4 @@ coverage
 coverage.xml
 build/logs/clover.xml
 .env
+src/cookie.txt

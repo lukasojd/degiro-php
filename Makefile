@@ -18,7 +18,7 @@ phpstan: vendor
 	vendor/bin/phpstan analyse -l 2 -c phpstan.neon src --memory-limit=-1
 
 tests: vendor
-	./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+	./vendor/bin/phpunit
 
 coverage: tests
 	php ./vendor/bin/php-coveralls --config ./tests/.coveralls.yml  --verbose

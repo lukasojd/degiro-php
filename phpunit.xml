@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit colors="true" bootstrap="vendor/autoload.php">
+    <logging>
+        <log type="coverage-html" target="./coverage/"/>
+    </logging>
 
     <filter>
         <whitelist
                 addUncoveredFilesFromWhitelist="true"
                 processUncoveredFilesFromWhitelist="true">
 
-            <directory suffix=".php">./app/</directory>
+            <directory suffix=".php">./src/</directory>
         </whitelist>
     </filter>
 
