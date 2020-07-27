@@ -12,6 +12,5 @@ $dotenv->required(['LOGIN', 'PASSWORD']);
 
 $config = new Config($_ENV['LOGIN'], $_ENV['PASSWORD']);
 $client = new Client();
-$degiroApi = new DegiroApi($client);
-$degiroApi->login($config);
-$config = $degiroApi->getDegiroConfig();
+$degiroApi = new DegiroApi($client, $config);
+$degiroApi->getOpenOrders();

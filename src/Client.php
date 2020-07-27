@@ -2,10 +2,10 @@
 
 namespace Lukasojd\DegiroPhp;
 
+use Lukasojd\DegiroPhp\Exception\StatusCodeException;
+
 class Client
 {
-
-	private string $apiUrl = 'https://trader.degiro.nl';
 
 	private ?string $cookiePath;
 
@@ -16,10 +16,10 @@ class Client
 
 	/**
 	 * @param mixed[] $params
+	 * @throws StatusCodeException
 	 */
-	public function execute(string $action, array $params = []): string
+	public function execute(string $url, array $params = []): string
 	{
-		$url = $this->apiUrl . $action;
 		$ch = curl_init();
 
 		$headers = $this->getHeaders();
@@ -45,9 +45,8 @@ class Client
 		$result = curl_exec($ch);
 		$info = curl_getinfo($ch);
 
-		if ($info['http_code'] !== 200) {
-			//todo exception
-			die('could not get config');
+		if ($info['http_code'] !== 200 && $info['http_code'] !== 201) {
+			throw new StatusCodeException('Error code from API', $info['http_code']);
 		}
 
 		$result = is_string($result)
