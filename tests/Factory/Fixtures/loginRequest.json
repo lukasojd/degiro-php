@@ -1,0 +1,12 @@
+{
+  "data": {
+    "id": 123,
+    "intAccount": 456,
+    "clientRole": "basic",
+    "effectiveClientRole": "basic",
+    "contractType": "PRIVATE",
+    "username": "username",
+    "displayName": "John Doe",
+    "email": "test@test.cz"
+  }
+}

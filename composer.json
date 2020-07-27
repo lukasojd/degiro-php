@@ -13,7 +13,10 @@
     "MIT"
   ],
   "require": {
-    "php": ">= 7.4.16"
+    "php": ">= 7.4.16",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "vlucas/phpdotenv": "^5.1"
   },
   "require-dev": {
     "ninjify/qa": "^0.9.0",
@@ -22,6 +25,11 @@
     "phpstan/extension-installer": "^1.0",
     "phpstan/phpstan-phpunit": "^0.12.11",
     "php-coveralls/php-coveralls": "^2.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Lukasojd\\DegiroPhp\\": "src"
+    }
   },
   "minimum-stability": "stable",
   "config": {

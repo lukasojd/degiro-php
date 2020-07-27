@@ -1,0 +1,25 @@
+{
+  "data": {
+    "tradingUrl": "https://trader.degiro.nl/trading/secure/",
+    "paUrl": "https://trader.degiro.nl/pa/secure/",
+    "reportingUrl": "https://trader.degiro.nl/reporting/secure/",
+    "paymentServiceUrl": "https://trader.degiro.nl/payments/",
+    "cashSolutionsUrl": "",
+    "productSearchUrl": "https://trader.degiro.nl/product_search/secure/",
+    "dictionaryUrl": "https://trader.degiro.nl/product_search/config/dictionary/",
+    "productTypesUrl": "https://trader.degiro.nl/product_search/config/productTypes/",
+    "companiesServiceUrl": "https://trader.degiro.nl/dgtbxdsservice/",
+    "i18nUrl": "https://trader.degiro.nl/i18n/",
+    "vwdQuotecastServiceUrl": "https://trader.degiro.nl/vwd-quotecast-service/",
+    "vwdNewsUrl": "https://solutions.vwdservices.com/customers/degiro.nl/news-feed/api/",
+    "vwdGossipsUrl": "https://solutions.vwdservices.com/customers/degiro.nl/news-feed/api/",
+    "firstLoginWizardUrl": "https://trader.degiro.nl/firstloginwizard/secure/",
+    "taskManagerUrl": "https://trader.degiro.nl/taskmanager/",
+    "landingPath": "/trader/",
+    "betaLandingPath": "/beta-trader/",
+    "mobileLandingPath": "/trader/",
+    "loginUrl": "https://trader.degiro.nl/login/cz",
+    "sessionId": "9B54A4BEF451C4996E883FCFCB3F42F3.prod_b_113_3",
+    "clientId": 462039
+  }
+}
