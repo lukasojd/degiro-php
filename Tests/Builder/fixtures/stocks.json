@@ -1,0 +1,64 @@
+{
+  "total": 482,
+  "offset": 0,
+  "products": [
+    {
+      "id": "332010",
+      "name": "3M",
+      "isin": "US88579Y1010",
+      "symbol": "MMM",
+      "contractSize": 1.000000,
+      "productType": "STOCK",
+      "productTypeId": 1,
+      "tradable": true,
+      "category": "A",
+      "currency": "USD",
+      "exchangeId": "676",
+      "orderTimeTypes": [
+        "DAY",
+        "GTC"
+      ],
+      "gtcAllowed": true,
+      "buyOrderTypes": [
+        "LIMIT",
+        "MARKET",
+        "STOPLOSS",
+        "STOPLIMIT"
+      ],
+      "sellOrderTypes": [
+        "LIMIT",
+        "MARKET",
+        "STOPLOSS",
+        "STOPLIMIT"
+      ],
+      "productBitTypes": [
+        "US_RAS_GREEN_LIST"
+      ],
+      "marketAllowed": true,
+      "limitHitOrderAllowed": false,
+      "stoplossAllowed": true,
+      "stopLimitOrderAllowed": true,
+      "joinOrderAllowed": false,
+      "trailingStopOrderAllowed": false,
+      "combinedOrderAllowed": false,
+      "sellAmountAllowed": false,
+      "isFund": false,
+      "closePrice": 163.2400,
+      "closePriceDate": "2020-07-27",
+      "feedQuality": "D15",
+      "orderBookDepth": 0,
+      "vwdIdentifierType": "issueid",
+      "vwdId": "330115738",
+      "qualitySwitchable": false,
+      "qualitySwitchFree": false,
+      "vwdModuleId": 10,
+      "feedQualitySecondary": "BT",
+      "orderBookDepthSecondary": 0,
+      "vwdIdentifierTypeSecondary": "vwdkey",
+      "vwdIdSecondary": "MMM.BATS,E",
+      "qualitySwitchableSecondary": true,
+      "qualitySwitchFreeSecondary": false,
+      "vwdModuleIdSecondary": 31
+    }
+  ]
+}

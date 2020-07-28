@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace App\Tests\Entity;
+namespace Tests\Entity;
 
 use Lukasojd\DegiroPhp\Entity\LoginData;
 use PHPUnit\Framework\TestCase;
