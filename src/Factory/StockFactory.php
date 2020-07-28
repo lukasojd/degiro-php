@@ -20,6 +20,8 @@ class StockFactory
 		$stock->setName($product['name']);
 		$stock->setCurrency($product['currency']);
 		$stock->setIsin($product['isin']);
+		$stock->setClosePrice($product['closePrice']);
+		$stock->setClosePriceDate($product['closePriceDate']);
 
 		return $stock;
 	}

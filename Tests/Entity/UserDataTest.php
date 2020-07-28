@@ -17,6 +17,7 @@ class UserDataTest extends TestCase
 		$userData->setUsername('username');
 		$userData->setContractType('type');
 		$userData->setEffectiveClientRole('role');
+		$userData->setClientRole('clientRole');
 		$userData->setIntAccount(21);
 		$userData->setId(30);
 
@@ -25,6 +26,7 @@ class UserDataTest extends TestCase
 		$this->assertSame('username', $userData->getUsername());
 		$this->assertSame('type', $userData->getContractType());
 		$this->assertSame('role', $userData->getEffectiveClientRole());
+		$this->assertSame('clientRole', $userData->getClientRole());
 		$this->assertSame(21, $userData->getIntAccount());
 		$this->assertSame(30, $userData->getId());
 	}

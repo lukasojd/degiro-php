@@ -17,6 +17,8 @@ class StockTest extends TestCase
 		$stock->setIsin('isin');
 		$stock->setProductType('type');
 		$stock->setSymbol('symbol');
+		$stock->setClosePrice(123.0);
+		$stock->setClosePriceDate('priceDatum');
 
 		$this->assertSame('id', $stock->getId());
 		$this->assertSame('currency', $stock->getCurrency());
@@ -24,6 +26,8 @@ class StockTest extends TestCase
 		$this->assertSame('isin', $stock->getIsin());
 		$this->assertSame('type', $stock->getProductType());
 		$this->assertSame('symbol', $stock->getSymbol());
+		$this->assertSame(123.0, $stock->getClosePrice());
+		$this->assertSame('priceDatum', $stock->getClosePriceDate());
 	}
 
 }

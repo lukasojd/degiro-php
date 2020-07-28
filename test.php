@@ -12,9 +12,8 @@ $dotenv->load();
 $dotenv->required(['LOGIN', 'PASSWORD']);
 
 $config = new Config($_ENV['LOGIN'], $_ENV['PASSWORD']);
-$client = new Client();
-$degiroApi = new DegiroApi($client, $config);
+$degiroApi = new DegiroApi($config);
 $stock = $degiroApi->getStockByTickerFromIndex('AAPL');
-var_export($stock);
+$degiroApi->placeOrder($stock, 1, $stock->getClosePrice());
 //$degiroApi->placeOrder('331868',1,380);
 //$degiroApi->getOpenOrders();

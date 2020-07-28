@@ -30,6 +30,8 @@ class StockFactoryTest extends TestCase
 			'category' => 'A',
 			'currency' => 'USD',
 			'exchangeId' => '676',
+			'closePrice' => 163.2400,
+			'closePriceDate' => '2020-07-27',
 		];
 		$stock = $this->stockFactory->create($input);
 
@@ -40,6 +42,8 @@ class StockFactoryTest extends TestCase
 		$exceptedStock->setName('3M');
 		$exceptedStock->setCurrency('USD');
 		$exceptedStock->setIsin('US88579Y1010');
+		$exceptedStock->setClosePrice(163.2400);
+		$exceptedStock->setClosePriceDate('2020-07-27');
 
 		$this->assertEquals($exceptedStock, $stock);
 	}

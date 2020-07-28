@@ -26,9 +26,9 @@ class DegiroApi
 	/** @var Stock[]|null */
 	protected $stocks = null;
 
-	public function __construct(Client $client, Config $config)
+	public function __construct(Config $config)
 	{
-		$this->client = $client;
+		$this->client = $this->getClient();
 
 		$this->loginData = $this->login($config);
 		$this->configsData = $this->getDegiroConfig();
@@ -158,4 +158,8 @@ class DegiroApi
 		return $stocksRepository->findStock($this->stocks, $ticker);
 	}
 
+	protected function getClient(): Client
+	{
+		return new Client();
+	}
 }

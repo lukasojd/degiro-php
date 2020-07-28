@@ -17,6 +17,10 @@ class Stock
 
 	private string $currency;
 
+	private float $closePrice;
+
+	private string $closePriceDate;
+
 	public function getId(): string
 	{
 		return $this->id;
@@ -75,6 +79,26 @@ class Stock
 	public function setCurrency(string $currency): void
 	{
 		$this->currency = $currency;
+	}
+
+	public function getClosePrice(): float
+	{
+		return $this->closePrice;
+	}
+
+	public function setClosePrice(float $closePrice): void
+	{
+		$this->closePrice = $closePrice;
+	}
+
+	public function getClosePriceDate(): string
+	{
+		return $this->closePriceDate;
+	}
+
+	public function setClosePriceDate(string $closePriceDate): void
+	{
+		$this->closePriceDate = $closePriceDate;
 	}
 
 }
