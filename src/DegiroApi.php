@@ -158,8 +158,9 @@ class DegiroApi
 		return $stocksRepository->findStock($this->stocks, $ticker);
 	}
 
-	protected function getClient(): Client
+	public function getClient(): Client
 	{
 		return new Client();
 	}
+
 }

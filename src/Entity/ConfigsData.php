@@ -25,6 +25,10 @@ class ConfigsData
 
 	private ?string $loginUrl;
 
+	private ?string $sessionId;
+
+	private ?int  $clientId;
+
 	public function getTradingUrl(): ?string
 	{
 		return $this->tradingUrl;
@@ -123,6 +127,26 @@ class ConfigsData
 	public function setLoginUrl(?string $loginUrl): void
 	{
 		$this->loginUrl = $loginUrl;
+	}
+
+	public function getSessionId(): ?string
+	{
+		return $this->sessionId;
+	}
+
+	public function setSessionId(?string $sessionId): void
+	{
+		$this->sessionId = $sessionId;
+	}
+
+	public function getClientId(): ?int
+	{
+		return $this->clientId;
+	}
+
+	public function setClientId(?int $clientId): void
+	{
+		$this->clientId = $clientId;
 	}
 
 }

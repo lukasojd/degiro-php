@@ -22,6 +22,8 @@ class ConfigDataFactory
 		$configsData->setProductTypesUrl($data['data']['productTypesUrl'] ?? null);
 		$configsData->setReportingUrl($data['data']['reportingUrl'] ?? null);
 		$configsData->setTradingUrl($data['data']['tradingUrl'] ?? null);
+		$configsData->setClientId($data['data']['clientId'] ?? null);
+		$configsData->setSessionId($data['data']['sessionId'] ?? null);
 
 		return $configsData;
 	}

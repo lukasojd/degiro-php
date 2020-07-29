@@ -21,6 +21,8 @@ class ConfigsDataTest extends TestCase
 		$configsData->setLoginUrl('loginUrl');
 		$configsData->setDictionaryUrl('dictionaryUrl');
 		$configsData->setCompaniesServiceUrl('companiesServiceUrl');
+		$configsData->setClientId(12345);
+		$configsData->setSessionId('sessionId');
 
 		$this->assertSame('tradingUrl', $configsData->getTradingUrl());
 		$this->assertSame('reportingUrl', $configsData->getReportingUrl());
@@ -32,6 +34,8 @@ class ConfigsDataTest extends TestCase
 		$this->assertSame('loginUrl', $configsData->getLoginUrl());
 		$this->assertSame('dictionaryUrl', $configsData->getDictionaryUrl());
 		$this->assertSame('companiesServiceUrl', $configsData->getCompaniesServiceUrl());
+		$this->assertSame(12345, $configsData->getClientId());
+		$this->assertSame('sessionId', $configsData->getSessionId());
 	}
 
 }
