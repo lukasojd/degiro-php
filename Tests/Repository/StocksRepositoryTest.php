@@ -26,6 +26,7 @@ class StocksRepositoryTest extends TestCase
 
 		$this->assertSame($stock, $this->stocksRepository->findStock([$stock, $stock2], 'AAPL'));
 		$this->assertSame($stock2, $this->stocksRepository->findStock([$stock, $stock2], 'GOOGL'));
+		$this->assertNull($this->stocksRepository->findStock(['invalid'], 'AAPL'));
 		$this->assertNull($this->stocksRepository->findStock([$stock, $stock2], 'GOOGLd'));
 	}
 

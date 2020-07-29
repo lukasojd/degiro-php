@@ -113,9 +113,11 @@ class DegiroApi
 
 		$result = json_decode($result, true);
 
-		if (isset($result['errors'])) {
-			echo "Error confirming order, check result\n";
+		if (!isset($result['errors'])) {
+			return;
 		}
+
+		echo "Error confirming order, check result\n";
 	}
 
 	private function fillInfoToUrl(string $url, bool $jsessionid = true): string

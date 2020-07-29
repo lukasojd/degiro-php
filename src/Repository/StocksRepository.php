@@ -14,11 +14,13 @@ class StocksRepository
 	{
 		$output = null;
 		foreach ($stocks as $stock) {
-			if ($stock instanceof Stock) {
-				if ($stock->getSymbol() === $ticker) {
-					$output = $stock;
-					break;
-				}
+			if (!($stock instanceof Stock)) {
+				continue;
+			}
+
+			if ($stock->getSymbol() === $ticker) {
+				$output = $stock;
+				break;
 			}
 		}
 
