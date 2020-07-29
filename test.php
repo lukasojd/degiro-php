@@ -1,8 +1,7 @@
 <?php declare(strict_types = 1);
 
-use Lukasojd\DegiroPhp\Client;
 use Lukasojd\DegiroPhp\Config;
-use Lukasojd\DegiroPhp\DegiroApi;
+use Lukasojd\DegiroPhp\Api\DegiroApi;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -11,6 +10,8 @@ $dotenv->load();
 $dotenv->required(['LOGIN', 'PASSWORD']);
 
 $config = new Config($_ENV['LOGIN'], $_ENV['PASSWORD']);
-$client = new Client();
-$degiroApi = new DegiroApi($client, $config);
-$degiroApi->getOpenOrders();
+$degiroApi = new DegiroApi($config);
+$stock = $degiroApi->getStockByTickerFromIndex('AAPL');
+$degiroApi->placeOrder($stock, 1, $stock->getClosePrice());
+//$degiroApi->placeOrder('331868',1,380);
+//$degiroApi->getOpenOrders();

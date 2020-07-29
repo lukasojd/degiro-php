@@ -19,7 +19,7 @@
     "betaLandingPath": "/beta-trader/",
     "mobileLandingPath": "/trader/",
     "loginUrl": "https://trader.degiro.nl/login/cz",
-    "sessionId": "9B54A4BEF451C4996E883FCFCB3F42F3.prod_b_113_3",
-    "clientId": 462039
+    "sessionId": "abc.prod_b_113_3",
+    "clientId": 12345
   }
 }

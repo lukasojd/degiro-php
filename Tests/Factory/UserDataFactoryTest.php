@@ -18,7 +18,7 @@ class UserDataFactoryTest extends TestCase
 
 	public function testCreate(): void
 	{
-		$data = file_get_contents(__DIR__ . '/Fixtures/loginRequest.json');
+		$data = file_get_contents(__DIR__ . '/../Fixtures/userData.json');
 		$exceptedUserData = new UserData();
 		$exceptedUserData->setId(123);
 		$exceptedUserData->setIntAccount(456);

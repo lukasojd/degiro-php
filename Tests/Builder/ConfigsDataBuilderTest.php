@@ -11,7 +11,7 @@ class ConfigsDataBuilderTest extends TestCase
 
 	public function testCreateConfigs(): void
 	{
-		$request = file_get_contents(__DIR__ . '/fixtures/request.json');
+		$request = file_get_contents(__DIR__ . '/../Fixtures/configData.json');
 		$configsDataBuilder = new ConfigsDataBuilder();
 		$configsData = $configsDataBuilder->build($request);
 		$this->assertInstanceOf(ConfigsData::class, $configsDataBuilder->build($request));

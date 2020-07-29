@@ -1,0 +1,8 @@
+{
+  "isPassCodeEnabled": true,
+  "locale": "cs_CZ",
+  "redirectUrl": "https://trader.degiro.nl/trader/",
+  "sessionId": "test.test",
+  "status": 0,
+  "statusText": "success"
+}
