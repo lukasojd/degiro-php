@@ -20,8 +20,8 @@ class LoginDataFactoryTest extends TestCase
 	{
 		$loginDataExcepted = new LoginData();
 		$loginDataExcepted->setLocale('cs_CZ');
-		$loginDataExcepted->setSessionId('3063AD7BA8390B7E229A02C0D9FD5603.prod_b_113_3');
-		$data = '{"isPassCodeEnabled":true,"locale":"cs_CZ","redirectUrl":"https://trader.degiro.nl/trader/","sessionId":"3063AD7BA8390B7E229A02C0D9FD5603.prod_b_113_3","status":0,"statusText":"success"}';
+		$loginDataExcepted->setSessionId('test.test');
+		$data = file_get_contents(__DIR__ . '/../Fixtures/loginData.json');
 		$loginDataActual = $this->loginDataFactory->create($data);
 		$this->assertEquals($loginDataExcepted, $loginDataActual);
 	}

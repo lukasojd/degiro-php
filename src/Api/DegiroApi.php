@@ -1,10 +1,13 @@
 <?php declare(strict_types = 1);
 
-namespace Lukasojd\DegiroPhp;
+namespace Lukasojd\DegiroPhp\Api;
 
 use Lukasojd\DegiroPhp\Builder\ConfigsDataBuilder;
 use Lukasojd\DegiroPhp\Builder\StocksBuilder;
+use Lukasojd\DegiroPhp\Client;
+use Lukasojd\DegiroPhp\Config;
 use Lukasojd\DegiroPhp\Entity\ConfigsData;
+use Lukasojd\DegiroPhp\Entity\DegiroConnector;
 use Lukasojd\DegiroPhp\Entity\LoginData;
 use Lukasojd\DegiroPhp\Entity\Stock;
 use Lukasojd\DegiroPhp\Entity\UserData;
@@ -26,13 +29,15 @@ class DegiroApi
 	/** @var Stock[]|null */
 	protected $stocks = null;
 
-	public function __construct(Config $config)
-	{
-		$this->client = $this->getClient();
+	private DegiroConnector $degiroConnector;
 
+	public function __construct(Config $config, ?DegiroConnector $degiroConnector = null)
+	{
+		$this->degiroConnector = $degiroConnector ?? new DegiroConnector();
 		$this->loginData = $this->login($config);
 		$this->configsData = $this->getDegiroConfig();
 		$this->userData = $this->getUserData();
+		$this->degiroConnector->setSessionInfo($this->loginData->getSessionId(), $this->userData->getIntAccount());
 	}
 
 	protected function login(Config $config): LoginData
@@ -45,7 +50,7 @@ class DegiroApi
 			'queryParams' => [],
 		];
 
-		$login = $this->client->execute('https://trader.degiro.nl/login/secure/login', $params);
+		$login = $this->degiroConnector->login($params);
 		$loginFactory = new LoginDataFactory();
 
 		return $loginFactory->create($login);
@@ -53,34 +58,22 @@ class DegiroApi
 
 	public function getDegiroConfig(): ConfigsData
 	{
-		$configs = $this->client->execute('https://trader.degiro.nl/login/secure/config');
+		$configs = $this->degiroConnector->getConfigData();
 		$configsDataBuilder = new ConfigsDataBuilder();
 		return $configsDataBuilder->build($configs);
 	}
 
 	public function getUserData(): UserData
 	{
-		$paUrl = $this->getDegiroConfig()->getPaUrl() . 'client?sessionId=' . $this->loginData->getSessionId();
-		$result = $this->client->execute($paUrl);
+		$result = $this->degiroConnector->getUserData($this->getDegiroConfig());
 		$userDataFactory = new UserDataFactory();
 		return $userDataFactory->create($result);
-	}
-
-	public function getOpenOrders(): void
-	{
-		$url = $this->configsData->getTradingUrl() . 'v5/update/?orders=0';
-		$url = $this->fillInfoToUrl($url);
-
-		$this->client->execute($url);
-		//todo logic
 	}
 
 	public function placeOrder(Stock $stock, int $qty, float $price): void
 	{
 		$price = (float) $price;
 
-		$url = $this->configsData->getTradingUrl() . 'v5/checkOrder';
-		$url = $this->fillInfoToUrl($url);
 		$posts = [
 			'buySell' => 'BUY',
 			'orderType' => 0,
@@ -90,15 +83,15 @@ class DegiroApi
 			'price' => $price,
 		];
 
-		$result = $this->client->execute($url, $posts);
+		$result = $this->degiroConnector->placeOrder($this->configsData);
 		$result = json_decode($result, true);
 
-		if (isset($result['data']['confirmationId'])) {
-			$confirmationId = $result['data']['confirmationId'];
-			$this->confirmOrder($confirmationId, $posts);
-		} else {
-			echo "Error placing order, check result\n";
+		if (!isset($result['data']['confirmationId'])) {
+			return;
 		}
+
+		$confirmationId = $result['data']['confirmationId'];
+		$this->confirmOrder($confirmationId, $posts);
 	}
 
 	/**
@@ -106,44 +99,15 @@ class DegiroApi
 	 */
 	private function confirmOrder(string $confirmationId, array $postParams): void
 	{
-		$url = $this->configsData->getTradingUrl() . 'v5/order/' . $confirmationId;
-		$url = $this->fillInfoToUrl($url);
-
-		$result = $this->client->execute($url, $postParams);
-
-		$result = json_decode($result, true);
-
-		if (!isset($result['errors'])) {
-			return;
-		}
-
-		echo "Error confirming order, check result\n";
-	}
-
-	private function fillInfoToUrl(string $url, bool $jsessionid = true): string
-	{
-		$sessionId = $this->loginData->getSessionId();
-		$intAccount = $this->userData->getIntAccount();
-		if ($jsessionid) {
-			$url .= ';jsessionid=' . $sessionId;
-		}
-		$url .= parse_url($url, PHP_URL_QUERY) ?
-			'&' :
-			'?';
-		$url .= 'intAccount=' . $intAccount . '&sessionId=' . $sessionId;
-
-		return $url;
+		$this->degiroConnector->confirmOrder($this->configsData, $confirmationId, $postParams);
 	}
 
 	/**
 	 * @return mixed[]
-	 * @throws Exception\StatusCodeException
 	 */
 	private function getStockFromIndex(): array
 	{
-		$url = 'https://trader.degiro.nl/product_search/secure/v5/stocks?isInUSGreenList=false&indexId=14&stockCountryId=846&searchText=&offset=0&limit=500&requireTotal=true&sortColumns=name&sortTypes=asc';
-		$url = $this->fillInfoToUrl($url, false);
-		$response = $this->client->execute($url);
+		$response = $this->degiroConnector->getStocksFromIndex();
 		$stockFactoryBuilder = new StocksBuilder();
 
 		return $stockFactoryBuilder->build($response);
@@ -158,11 +122,6 @@ class DegiroApi
 		$stocksRepository = new StocksRepository();
 
 		return $stocksRepository->findStock($this->stocks, $ticker);
-	}
-
-	public function getClient(): Client
-	{
-		return new Client();
 	}
 
 }

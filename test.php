@@ -1,9 +1,7 @@
 <?php declare(strict_types = 1);
 
-use Lukasojd\DegiroPhp\Client;
 use Lukasojd\DegiroPhp\Config;
-use Lukasojd\DegiroPhp\DegiroApi;
-use Lukasojd\DegiroPhp\Repository\StocksRepository;
+use Lukasojd\DegiroPhp\Api\DegiroApi;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
