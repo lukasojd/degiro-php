@@ -6,8 +6,8 @@ use Lukasojd\DegiroPhp\Builder\ConfigsDataBuilder;
 use Lukasojd\DegiroPhp\Builder\StocksBuilder;
 use Lukasojd\DegiroPhp\Client;
 use Lukasojd\DegiroPhp\Config;
+use Lukasojd\DegiroPhp\Connector\DegiroConnector;
 use Lukasojd\DegiroPhp\Entity\ConfigsData;
-use Lukasojd\DegiroPhp\Entity\DegiroConnector;
 use Lukasojd\DegiroPhp\Entity\LoginData;
 use Lukasojd\DegiroPhp\Entity\Stock;
 use Lukasojd\DegiroPhp\Entity\UserData;
@@ -35,9 +35,12 @@ class DegiroApi
 	{
 		$this->degiroConnector = $degiroConnector ?? new DegiroConnector();
 		$this->loginData = $this->login($config);
+		$this->degiroConnector->setSessionId($this->loginData->getSessionId());
+
 		$this->configsData = $this->getDegiroConfig();
+
 		$this->userData = $this->getUserData();
-		$this->degiroConnector->setSessionInfo($this->loginData->getSessionId(), $this->userData->getIntAccount());
+		$this->degiroConnector->setIntAccount($this->userData->getIntAccount());
 	}
 
 	protected function login(Config $config): LoginData
