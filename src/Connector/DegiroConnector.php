@@ -1,8 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace Lukasojd\DegiroPhp\Entity;
+namespace Lukasojd\DegiroPhp\Connector;
 
 use Lukasojd\DegiroPhp\Client;
+use Lukasojd\DegiroPhp\Entity\ConfigsData;
 
 class DegiroConnector
 {
@@ -18,10 +19,14 @@ class DegiroConnector
 		$this->client = $client ?? $this->getClient();
 	}
 
-	public function setSessionInfo(string $sessionId, int $intAccount): void
+	public function setIntAccount(?int $intAccount): void
+	{
+		$this->intAccount = $intAccount;
+	}
+
+	public function setSessionId(?string $sessionId): void
 	{
 		$this->sessionId = $sessionId;
-		$this->intAccount = $intAccount;
 	}
 
 	/**

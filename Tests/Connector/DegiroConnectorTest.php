@@ -3,8 +3,8 @@
 namespace Tests\Connector;
 
 use Lukasojd\DegiroPhp\Client;
+use Lukasojd\DegiroPhp\Connector\DegiroConnector;
 use Lukasojd\DegiroPhp\Entity\ConfigsData;
-use Lukasojd\DegiroPhp\Entity\DegiroConnector;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -20,7 +20,8 @@ class DegiroConnectorTest extends TestCase
 	{
 		$this->client = $this->createMock(Client::class);
 		$this->degiroConnector = new DegiroConnector($this->client);
-		$this->degiroConnector->setSessionInfo('sessionId', 123);
+		$this->degiroConnector->setSessionId('sessionId');
+		$this->degiroConnector->setIntAccount(123);
 	}
 
 	public function testLogin(): void

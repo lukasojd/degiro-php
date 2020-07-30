@@ -4,8 +4,8 @@ namespace Tests\Api;
 
 use Lukasojd\DegiroPhp\Api\DegiroApi;
 use Lukasojd\DegiroPhp\Config;
+use Lukasojd\DegiroPhp\Connector\DegiroConnector;
 use Lukasojd\DegiroPhp\Entity\ConfigsData;
-use Lukasojd\DegiroPhp\Entity\DegiroConnector;
 use Lukasojd\DegiroPhp\Entity\Stock;
 use Lukasojd\DegiroPhp\Entity\UserData;
 use PHPUnit\Framework\MockObject\MockObject;
