@@ -97,4 +97,19 @@ class DegiroConnectorTest extends TestCase
 		);
 	}
 
+	public function testGetOpenOrders(): void
+	{
+		$this->client->expects($this->once())->method('execute')
+			->with('trading/v5/update/123;jsessionid=sessionId?orders=0')
+			->willReturn('getOpenOrders');
+
+		$configsData = new ConfigsData();
+		$configsData->setTradingUrl('trading/');
+
+		$this->assertSame(
+			'getOpenOrders',
+			$this->degiroConnector->getOpenOrders($configsData)
+		);
+	}
+
 }

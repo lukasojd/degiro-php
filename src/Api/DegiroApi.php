@@ -3,12 +3,14 @@
 namespace Lukasojd\DegiroPhp\Api;
 
 use Lukasojd\DegiroPhp\Builder\ConfigsDataBuilder;
+use Lukasojd\DegiroPhp\Builder\OrdersBuilder;
 use Lukasojd\DegiroPhp\Builder\StocksBuilder;
 use Lukasojd\DegiroPhp\Client;
 use Lukasojd\DegiroPhp\Config;
 use Lukasojd\DegiroPhp\Connector\DegiroConnector;
 use Lukasojd\DegiroPhp\Entity\ConfigsData;
 use Lukasojd\DegiroPhp\Entity\LoginData;
+use Lukasojd\DegiroPhp\Entity\Order;
 use Lukasojd\DegiroPhp\Entity\Stock;
 use Lukasojd\DegiroPhp\Entity\UserData;
 use Lukasojd\DegiroPhp\Factory\LoginDataFactory;
@@ -125,6 +127,16 @@ class DegiroApi
 		$stocksRepository = new StocksRepository();
 
 		return $stocksRepository->findStock($this->stocks, $ticker);
+	}
+
+	/**
+	 * @return Order[]
+	 */
+	public function getOpenOrders(): array
+	{
+		$openOrders = $this->degiroConnector->getOpenOrders($this->configsData);
+		$ordersBuilder = new OrdersBuilder();
+		return $ordersBuilder->build($openOrders);
 	}
 
 }

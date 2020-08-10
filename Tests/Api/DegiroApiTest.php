@@ -6,6 +6,7 @@ use Lukasojd\DegiroPhp\Api\DegiroApi;
 use Lukasojd\DegiroPhp\Config;
 use Lukasojd\DegiroPhp\Connector\DegiroConnector;
 use Lukasojd\DegiroPhp\Entity\ConfigsData;
+use Lukasojd\DegiroPhp\Entity\Order;
 use Lukasojd\DegiroPhp\Entity\Stock;
 use Lukasojd\DegiroPhp\Entity\UserData;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -96,6 +97,20 @@ class DegiroApiTest extends TestCase
 		$stock = new Stock();
 		$stock->setId('12345');
 		$this->degiroApi->placeOrder($stock, 1, 1);
+	}
+
+	public function testGetOpenOrders(): void
+	{
+		$orders = file_get_contents(__DIR__ . '/../Fixtures/orders.json');
+		$this->degiroConnector->expects($this->once())->method('getOpenOrders')
+			->willReturn($orders);
+
+		$orders = $this->degiroApi->getOpenOrders();
+		$this->assertCount(1, $orders);
+		/** @var Order $firstOrder */
+		$firstOrder = reset($orders);
+		$this->assertInstanceOf(Order::class, $firstOrder);
+		$this->assertSame('test', $firstOrder->getId());
 	}
 
 }

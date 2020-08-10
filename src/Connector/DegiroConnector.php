@@ -101,4 +101,12 @@ class DegiroConnector
 		return $url;
 	}
 
+	public function getOpenOrders(ConfigsData $configsData): string
+	{
+		$url = $configsData->getTradingUrl() . 'v5/update/' .
+			$this->intAccount . ';jsessionid=' . $this->sessionId . '?orders=0';
+
+		return $this->client->execute($url);
+	}
+
 }

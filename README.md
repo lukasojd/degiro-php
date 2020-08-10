@@ -7,6 +7,21 @@
 
 PHP implementation of DEGIRO api. There is no official degiro API.
 
+## API support
+
+
+| Function  | support |
+| ------------- | ------------- |
+| Buy - LIMIT  | YES  |
+| BUY - MARKET  | NO  |
+| SELL - LIMIT  | NO  |
+| SELL - MARKET  | NO  |
+| Get open orders  | YES  |
+| Cancel all open orders  | YES  |
+| Login | YES |
+| Lists stock ( S&P 500 )| YES |
+| Get detail stock ( S&P 500 )| YES |
+
 ## Maintainers
 
 <table>
